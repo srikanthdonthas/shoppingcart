@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, IconButton, TextField, makeStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
@@ -24,18 +24,8 @@ const ProductsInfoData = (props) => {
   const [name, setName] = useState();
   const [productPic, setProductPic] = useState();
   const [open, setOpen] = useState(false);
-  const [selectedVendor, setSelectedVendor] = useState();
+  const [id, setId] = useState();
   const [data, setData] = useState();
-
-  const getData = () => {
-    db.collection("vendors")
-      .doc(selectedVendor)
-      .get()
-      .then((doc) => {
-        setData(doc.data());
-        console.log(doc.data());
-      });
-  };
 
   const updateProduct = () => {
     db.collection("products")
@@ -46,6 +36,7 @@ const ProductsInfoData = (props) => {
           details: details,
           productPic: productPic,
           price: price,
+          vendor: { data, id },
         },
 
         { merge: true }
@@ -58,6 +49,15 @@ const ProductsInfoData = (props) => {
       });
     setOpen(false);
   };
+
+  useEffect(() => {
+    db.collection("vendors")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        setData(doc.data());
+      });
+  }, [id]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -114,10 +114,7 @@ const ProductsInfoData = (props) => {
               type="text"
               fullWidth
             />
-            <Dropdown
-              value={selectedVendor}
-              onChange={(e) => setSelectedVendor(e.target.value)}
-            />
+            <Dropdown value={id} onChange={(e) => setId(e.target.value)} />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
