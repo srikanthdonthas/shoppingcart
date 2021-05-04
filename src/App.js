@@ -13,16 +13,10 @@ function App() {
       <Container>
         <Header />
         <Switch>
-          <Route exact path="/">
-            <UserProductData />
-          </Route>
-          <Route exact path="/product">
-            <ProductsInfo />
-          </Route>
-          <Route path="/product/:id" component={Product}></Route>
-          <Route exact path="/vendor">
-            <VendorInfo />
-          </Route>
+          <Route exact path="/" component={UserProductData} />
+          <Route exact path="/product" component={ProductsInfo} />
+          <Route path="/product/:id" component={Product} />
+          <Route exact path="/vendor" component={VendorInfo} />
         </Switch>
       </Container>
     </Router>
