@@ -19,9 +19,7 @@ function App() {
           <Route exact path="/product">
             <ProductsInfo />
           </Route>
-          <Route path="/product/:id">
-            <Product />
-          </Route>
+          <Route path="/product/:id" component={Product}></Route>
           <Route exact path="/vendor">
             <VendorInfo />
           </Route>

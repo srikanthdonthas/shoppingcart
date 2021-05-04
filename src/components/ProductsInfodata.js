@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Button, IconButton, TextField, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  TextField,
+  makeStyles,
+  Link,
+} from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import db from "../firebase";
 import Dropdown from "./Dropdown";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +26,7 @@ const useStyles = makeStyles({
 
 const ProductsInfoData = (props) => {
   const classes = useStyles();
+  const history = useHistory();
   const [details, setDetails] = useState(`${props.product.details}`);
   const [price, setPrice] = useState(`${props.product.price}`);
   const [name, setName] = useState(`${props.product.name}`);
@@ -43,7 +51,7 @@ const ProductsInfoData = (props) => {
         db.collection("vendors")
           .doc(vendorId)
           .collection("product")
-          .add({ product: props.id });
+          .add({ productId: props.id });
         setOpen(false);
       });
   };
@@ -121,7 +129,12 @@ const ProductsInfoData = (props) => {
       <Container>
         <Box>
           <img src={props.product.productPic} alt="" width="250" height="200" />
-          <h1>{`${props.product.name}`}</h1>
+          {/* <h1>{`${props.product.name}`}</h1> */}
+          <h1>
+            <Link onClick={() => history.push(`/product/${props.id}`)}>
+              {props.product.name}
+            </Link>
+          </h1>
           <h2>{`₹${props.product.price}`}</h2>
           <h3>{`Details:${props.product.details}`}</h3>
           <Buttons>
@@ -179,6 +192,7 @@ const Box = styled.div`
   > h1 {
     flex: 1;
     font-size: 20px;
+    cursor: pointer;
   }
   > h3 {
     flex: 1;
