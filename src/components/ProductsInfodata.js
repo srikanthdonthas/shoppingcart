@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Button, IconButton, TextField, makeStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
@@ -19,13 +19,12 @@ const useStyles = makeStyles({
 
 const ProductsInfoData = (props) => {
   const classes = useStyles();
-  const [details, setDetails] = useState();
-  const [price, setPrice] = useState();
-  const [name, setName] = useState();
-  const [productPic, setProductPic] = useState();
+  const [details, setDetails] = useState(`${props.product.details}`);
+  const [price, setPrice] = useState(`${props.product.price}`);
+  const [name, setName] = useState(`${props.product.name}`);
+  const [productPic, setProductPic] = useState(`${props.product.productPic}`);
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState();
-  const [data, setData] = useState();
+  const [vendorId, setVendorId] = useState(`${props.product.vendor}`);
 
   const updateProduct = () => {
     db.collection("products")
@@ -36,28 +35,18 @@ const ProductsInfoData = (props) => {
           details: details,
           productPic: productPic,
           price: price,
-          vendor: { data, id },
+          vendor: vendorId,
         },
-
         { merge: true }
       )
       .then(() => {
-        //console.log("Document successfully updated!");
-      })
-      .catch((error) => {
-        //console.error("Error removing document: ", error);
+        db.collection("vendors")
+          .doc(vendorId)
+          .collection("product")
+          .add({ product: props.id });
+        setOpen(false);
       });
-    setOpen(false);
   };
-
-  useEffect(() => {
-    db.collection("vendors")
-      .doc(id)
-      .get()
-      .then((doc) => {
-        setData(doc.data());
-      });
-  }, [id]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -80,18 +69,18 @@ const ProductsInfoData = (props) => {
             <TextField
               autoFocus
               margin="dense"
-              onChange={(e) => setName(e.target.value)}
               id={`${props.product.name}`}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               label="Product Name"
-              defaultValue={`${props.product.name}`}
               type="text"
               fullWidth
             />
             <TextField
               margin="dense"
               id={`${props.product.productPic}`}
+              value={productPic}
               onChange={(e) => setProductPic(e.target.value)}
-              defaultValue={`${props.product.productPic}`}
               label="Product Image"
               type="img"
               fullWidth
@@ -99,8 +88,8 @@ const ProductsInfoData = (props) => {
             <TextField
               margin="dense"
               id={`${props.product.price}`}
+              value={price}
               onChange={(e) => setPrice(e.target.value)}
-              defaultValue={`${props.product.price}`}
               label="Price"
               type="number"
               fullWidth
@@ -108,13 +97,16 @@ const ProductsInfoData = (props) => {
             <TextField
               margin="dense"
               id={`${props.product.details}`}
+              value={details}
               onChange={(e) => setDetails(e.target.value)}
-              defaultValue={`${props.product.details}`}
               label="Description"
               type="text"
               fullWidth
             />
-            <Dropdown value={id} onChange={(e) => setId(e.target.value)} />
+            <Dropdown
+              value={vendorId}
+              onChange={(e) => setVendorId(e.target.value)}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -146,16 +138,7 @@ const ProductsInfoData = (props) => {
               <Button
                 variant="outlined"
                 onClick={(e) =>
-                  db
-                    .collection("products")
-                    .doc(props.id)
-                    .delete()
-                    .then(() => {
-                      //console.log(`Document successfully deleted!${props.id}`);
-                    })
-                    .catch((error) => {
-                      //console.error("Error removing document: ", error);
-                    })
+                  db.collection("products").doc(props.id).delete()
                 }
               >
                 DELETE

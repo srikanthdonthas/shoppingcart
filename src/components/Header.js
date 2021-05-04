@@ -7,7 +7,7 @@ function Header() {
   return (
     <Container>
       <HeaderLeft>
-        <h1 onClick={() => history.push("/")}>Shopping Mail</h1>
+        <h1 onClick={() => history.push("/")}>Shopping Mall</h1>
       </HeaderLeft>
       <HeaderRight>
         <h1 onClick={() => history.push("/")}>HOME</h1>

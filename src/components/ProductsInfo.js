@@ -42,7 +42,6 @@ function ProductsInfo() {
   return (
     <Container>
       <LeftContainer>
-        <h1>{name}</h1>
         {products.map(({ id, product }) => (
           <ProductsInfoData product={product} id={id} />
         ))}
@@ -73,7 +72,7 @@ function ProductsInfo() {
             placeholder="Details"
             type="text"
           />
-          <button type="submit" onClick={addProducts} disabled={!name}>
+          <button type="submit" onClick={addProducts}>
             Save Product
           </button>
         </form>
