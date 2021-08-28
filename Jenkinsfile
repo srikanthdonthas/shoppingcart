@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                nodejs(nodeJSInstallationName: 'Node 16.17.0') {
-                    sh 'ls'
-                }
+                sh 'ls'
             }
         }
     }
