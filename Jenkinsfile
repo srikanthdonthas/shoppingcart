@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('install') {
       steps {
-        nodejs{
+        nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>'){
           sh 'npm install'
         } 
       }
