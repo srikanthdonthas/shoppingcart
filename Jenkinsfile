@@ -24,9 +24,6 @@ pipeline {
           sh 'pwd'
           sh 'cd ..'
           sh 'ls'
-          sh 'mv $WORKSPACE/* $WORKSPACE/../Desktop/'
-          sh 'ls'
-          sh 'rm -rf node_modules'
         }
       }
     }
