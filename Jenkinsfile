@@ -21,6 +21,7 @@ pipeline {
       }
       stage('WORKSPACE') {
         steps {
+          sh 'fuser -k -n tcp 3000'
           sh 'pwd'
           sh 'cd ..'
           sh 'ls'

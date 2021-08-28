@@ -21,6 +21,7 @@ function UserProductData() {
 
   return (
     <Container>
+        <img style={{width:'50%'}} src="https://images.pexels.com/photos/982263/pexels-photo-982263.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"/>
       <ShopingList>
         {products.map(({ id, product }) => (
           <UserProductDataItems product={product} id={id} />
