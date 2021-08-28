@@ -15,6 +15,7 @@ pipeline {
           steps {
              echo 'installing node modules'
              sh 'npm install'
+             sh 'ls'
              echo 'installed node modules'
           }
        }
