@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'pwd'
+                sh 'echo "the PWD is : ${pwd}"'
             }
         }
-        stage('start'){
-          steps{
-            sh 'npm start'
-          }
-        }
+        // stage('start'){
+        //   steps{
+        //     sh 'npm start'
+        //   }
+        // }
     }
 }
