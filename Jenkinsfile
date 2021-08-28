@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                sh 'echo "the PWD is : ${pwd}"'
-            }
+          stage('build') {
+              steps {
+                  echo 'building the software'
+                  sh 'npm install'
+              }
+          }
         }
         // stage('start'){
         //   steps{
