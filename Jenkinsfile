@@ -24,6 +24,7 @@ pipeline {
           sh 'pwd'
           sh 'cd ..'
           sh 'ls'
+          sh 'npm start'
         }
       }
     }
