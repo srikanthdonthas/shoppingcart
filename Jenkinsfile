@@ -19,10 +19,12 @@ pipeline {
            echo 'installed node modules'
          }
       }
-      stage('moving to folder to desktop') {
+      stage('WORKSPACE') {
         steps {
-          sh 'ls'
+          sh 'pwd'
           sh 'cd ..'
+          sh 'ls'
+          sh 'mv $WORKSPACE/* $WORKSPACE/../Desktop/'
           sh 'ls'
           sh 'rm -rf node_modules'
         }
