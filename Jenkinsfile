@@ -6,7 +6,7 @@ pipeline {
         steps{
           echo 'removing old NPM MODULES'
           sh 'ls'
-          sh 'rm -r node modules'
+          sh 'rm -r node_modules'
           echo 'removed old NPM MODULES'
           sh 'ls'
         }
