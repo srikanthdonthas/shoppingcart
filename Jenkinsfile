@@ -5,7 +5,7 @@ pipeline {
         steps{
           sh 'ls'
           echo 'removing old NPM MODULES'
-          sh 'rm -r $node_modules'
+          sh 'rm -r node_modules'
           echo 'removed old NPM MODULES'
           sh 'ls'
         }
@@ -18,6 +18,13 @@ pipeline {
            sh 'ls'
            echo 'installed node modules'
          }
+      }
+      stage(moving to folder to desktop){
+        steps{
+          sh 'ls'
+          sh 'cd ..'
+          sh 'ls'
+        }
       }
     }
 }
