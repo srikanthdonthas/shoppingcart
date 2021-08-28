@@ -2,11 +2,18 @@ pipeline {
     agent any
 
     stages {
-       stage('build') {
-          steps {
-             echo 'building the software'
-             sh 'npm install'
-          }
-       }
+      stage('remove old NPM MODULES') {
+        steps{
+          echo 'removing old NPM MODULES'
+          sh 'ls'
+        }
+      }
+      //  stage('NPM MODULES') {
+      //     steps {
+      //        echo 'installing node modules'
+      //        sh 'npm install'
+      //        echo 'installed node modules'
+      //     }
+      //  }
     }
 }
