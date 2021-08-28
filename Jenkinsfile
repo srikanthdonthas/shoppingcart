@@ -22,7 +22,7 @@ pipeline {
       stage('WORKSPACE') {
         steps {
           sh 'pwd'
-          sh 'cp -R /var/lib/jenkins/workspace/github /home/srikanth/Desktop'
+          sh 'sudo cp -R /var/lib/jenkins/workspace/github /home/srikanth/Desktop'
           sh 'pwd'
         }
       }
