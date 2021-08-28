@@ -11,12 +11,12 @@ pipeline {
           sh 'ls'
         }
       }
-      //  stage('NPM MODULES') {
-      //     steps {
-      //        echo 'installing node modules'
-      //        sh 'npm install'
-      //        echo 'installed node modules'
-      //     }
-      //  }
+       stage('installing new NPM MODULES') {
+          steps {
+             echo 'installing node modules'
+             sh 'npm install'
+             echo 'installed node modules'
+          }
+       }
     }
 }
