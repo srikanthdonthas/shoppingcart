@@ -24,6 +24,7 @@ pipeline {
           sh 'ls'
           sh 'cd ..'
           sh 'ls'
+          sh 'rm -rf node_modules'
         }
       }
     }
