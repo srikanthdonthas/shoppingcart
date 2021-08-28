@@ -25,8 +25,10 @@ pipeline {
           sh 'pwd'
           sh 'cd ..'
           sh 'ls'
-          sh 'npm start'
-          sh 'xdg-open http://localhost:3000/'
+          sh 'npm build'
+          sh 'ls'
+          //sh 'npm start'
+          //sh 'xdg-open http://localhost:3000/'
         }
       }
     }
