@@ -21,14 +21,9 @@ pipeline {
       }
       stage('WORKSPACE') {
         steps {
-          //sh 'fuser -k -n tcp 3000'
           sh 'pwd'
-          sh 'cd ..'
-          sh 'ls'
-          sh 'npm build'
-          sh 'ls'
-          //sh 'npm start'
-          //sh 'xdg-open http://localhost:3000/'
+          sh 'cp -R /var/lib/jenkins/workspace/github /home/srikanth/Desktop'
+          sh 'pwd'
         }
       }
     }
