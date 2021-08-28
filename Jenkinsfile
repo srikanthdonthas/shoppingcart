@@ -19,12 +19,12 @@ pipeline {
            echo 'installed node modules'
          }
       }
-      stage(moving to folder to desktop){
-        steps{
-          sh 'ls'
-          sh 'cd ..'
-          sh 'ls'
-        }
-      }
+      // stage(moving to folder to desktop){
+      //   steps{
+      //     sh 'ls'
+      //     sh 'cd ..'
+      //     sh 'ls'
+      //   }
+      // }
     }
 }
